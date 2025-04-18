@@ -1,4 +1,4 @@
-package com.example.mtb.utility;
+package com.example.mtb.responsebuilder;
 
 import com.example.mtb.exception.UserRegistrationException;
 import org.springframework.http.HttpStatus;

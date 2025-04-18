@@ -1,4 +1,10 @@
 package com.example.mtb.entity;
 
-public class User {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+
+@Entity
+public class User extends UserDetails{
+
+
 }

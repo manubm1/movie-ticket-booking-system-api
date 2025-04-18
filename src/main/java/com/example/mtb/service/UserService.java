@@ -1,4 +1,7 @@
 package com.example.mtb.service;
 
-public interface UserDetailsService {
+import com.example.mtb.entity.UserDetails;
+
+public interface UserService {
+    UserDetails userRegistration(UserDetails user);
 }

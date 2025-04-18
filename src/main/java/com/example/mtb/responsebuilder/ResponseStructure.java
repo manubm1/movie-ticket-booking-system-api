@@ -1,4 +1,4 @@
-package com.example.mtb.utility;
+package com.example.mtb.responsebuilder;
 
 import lombok.Getter;
 import lombok.Setter;
