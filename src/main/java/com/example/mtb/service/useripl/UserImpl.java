@@ -1,4 +1,4 @@
-package com.example.mtb.service.serviceimpl;
+package com.example.mtb.service.useripl;
 
 import com.example.mtb.entity.UserDetails;
 import com.example.mtb.exception.UserRegistrationException;
@@ -11,14 +11,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserImpl implements UserService {
 
-      final UserDetailsRepository userRepository;
+    private final UserDetailsRepository userDetailsRepository;
+
 
     @Override
     public UserDetails userRegistration(UserDetails user) {
-        if(userRepository.existsByEmail(user.getEmail())) {
-             throw new UserRegistrationException(" This email already Existing in data Base");
-
-        }else
-           return  userRepository.save(user);
+       if(userDetailsRepository.existsByEmail(user.getEmail())) {
+           throw new UserRegistrationException(" User already exists");
+       }
+         else
+           return userDetailsRepository.save(user);
+       }
     }
-}
+

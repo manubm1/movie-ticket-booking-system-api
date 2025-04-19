@@ -1,9 +1,11 @@
 package com.example.mtb.controller;
 
 import com.example.mtb.entity.UserDetails;
+import com.example.mtb.responsebuilder.ResponseBuilder;
 import com.example.mtb.service.UserService;
 import com.example.mtb.responsebuilder.ResponseStructure;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,15 +17,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserDetailsController {
 
     private final UserService userService;
+
+    @Autowired
+    private final ResponseBuilder responseBuilder;
    @PostMapping("/registration")
     ResponseEntity<ResponseStructure<UserDetails>> userRegistration(@RequestBody UserDetails user){
         UserDetails users = userService.userRegistration(user);
-
-        ResponseStructure<UserDetails> resp = new ResponseStructure<>();
-        resp.setStatusCode(HttpStatus.CREATED.value());
-        resp.setMessage(" User registred Successfully");
-        resp.setData(users);
-        return new  ResponseEntity<ResponseStructure<UserDetails>>(resp,HttpStatus.CREATED);
+         return responseBuilder.success(HttpStatus.CREATED, "User registered successfully", user);
+//        ResponseStructure<UserDetails> resp = new ResponseStructure<>();
+//        resp.setStatusCode(HttpStatus.CREATED.value());
+//        resp.setMessage(" User registred Successfully");
+//        resp.setData(users);
+//        return new  ResponseEntity<ResponseStructure<UserDetails>>(,HttpStatus.CREATED);
     }
 
 
