@@ -21,14 +21,10 @@ public class UserDetailsController {
     @Autowired
     private final ResponseBuilder responseBuilder;
    @PostMapping("/registration")
-    ResponseEntity<ResponseStructure<UserDetails>> userRegistration(@RequestBody UserDetails user){
-        UserDetails users = userService.userRegistration(user);
-         return responseBuilder.success(HttpStatus.CREATED, "User registered successfully", user);
-//        ResponseStructure<UserDetails> resp = new ResponseStructure<>();
-//        resp.setStatusCode(HttpStatus.CREATED.value());
-//        resp.setMessage(" User registred Successfully");
-//        resp.setData(users);
-//        return new  ResponseEntity<ResponseStructure<UserDetails>>(,HttpStatus.CREATED);
+    ResponseEntity<ResponseStructure<UserDetails>> userRegistration(@RequestBody UserDetails users){
+        UserDetails user = userService.userRegistration(users);
+         return responseBuilder.success(HttpStatus.CREATED, " registered successfully to Booking platform", user);
+
     }
 
 
