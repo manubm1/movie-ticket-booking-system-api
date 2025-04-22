@@ -1,5 +1,6 @@
 package com.example.mtb.controller;
 
+import com.example.mtb.dto.UserRegistrationRequest;
 import com.example.mtb.entity.UserDetails;
 import com.example.mtb.responsebuilder.ResponseBuilder;
 import com.example.mtb.service.UserService;
@@ -21,7 +22,7 @@ public class UserDetailsController {
     @Autowired
     private final ResponseBuilder responseBuilder;
    @PostMapping("/registration")
-    ResponseEntity<ResponseStructure<UserDetails>> userRegistration(@RequestBody UserDetails users){
+    ResponseEntity<ResponseStructure<UserDetails>> userRegistration(@RequestBody UserRegistrationRequest users){
         UserDetails user = userService.userRegistration(users);
          return responseBuilder.success(HttpStatus.CREATED, " registered successfully to Booking platform", user);
 
