@@ -16,4 +16,7 @@ public class ResponseBuilder {
 
         return  new ResponseEntity<>(structure,status);
     }
+
+
+
 }
