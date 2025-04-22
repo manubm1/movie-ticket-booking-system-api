@@ -1,6 +1,7 @@
 package com.example.mtb.service.useripl;
 
 import com.example.mtb.dto.UserRegistrationRequest;
+import com.example.mtb.dto.UserResponse;
 import com.example.mtb.entity.TheaterOwner;
 import com.example.mtb.entity.User;
 import com.example.mtb.entity.UserDetails;
@@ -11,6 +12,8 @@ import com.example.mtb.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @AllArgsConstructor
 public class UserImpl implements UserService {
@@ -18,7 +21,7 @@ public class UserImpl implements UserService {
     private final UserDetailsRepository userDetailsRepository;
 
     @Override
-    public UserDetails userRegistration(UserRegistrationRequest users) {
+    public UserResponse userRegistration(UserRegistrationRequest users) {
        if(userDetailsRepository.existsByEmail(users.email())) {
            throw new UserRegistrationException(" User already exists");
        }
@@ -33,20 +36,24 @@ public class UserImpl implements UserService {
                user.setPhoneNumber(users.phoneNumber());
                user.setDateOfBirth(users.dateOfBirth());
 
-               userDetailsRepository.save(user);
-                return user;
+              userDetailsRepository.save(user);
+               return new UserResponse(user.getUserId(),user.getUsername(),user.getEmail(),user.getPhoneNumber(),user.getUserRole(),user.getDateOfBirth());
+
+
            } else {
 
               TheaterOwner owner = new TheaterOwner();
-
                owner.setUsername(users.username());
                owner.setEmail(users.email());
                owner.setUserRole(users.userRole());
                owner.setPassword(users.password());
                owner.setPhoneNumber(users.phoneNumber());
                owner.setDateOfBirth(users.dateOfBirth());
+               userDetailsRepository.save(owner);
+               return new UserResponse(owner.getUserId(),owner.getUsername(),owner.getEmail(),owner.getPhoneNumber(),owner.getUserRole(),owner.getDateOfBirth());
 
-               return userDetailsRepository.save(owner);
+
+
 
            }
        }
