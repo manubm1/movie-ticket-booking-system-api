@@ -1,4 +1,7 @@
 package com.example.mtb.dto;
 
-public record UserRequest() {
+import java.time.LocalDate;
+
+public record UserRequest(String userId,String username, String phoneNumber, LocalDate dateOfBirth ){
+
 }
