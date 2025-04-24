@@ -6,6 +6,7 @@ import com.example.mtb.entity.UserDetails;
 import com.example.mtb.responsebuilder.ResponseBuilder;
 import com.example.mtb.service.UserService;
 import com.example.mtb.responsebuilder.ResponseStructure;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class UserDetailsController {
     @Autowired
     private final ResponseBuilder responseBuilder;
    @PostMapping("/registration")
-    ResponseEntity<ResponseStructure<UserResponse>> userRegistration(@RequestBody UserRegistrationRequest users){
+    ResponseEntity<ResponseStructure<UserResponse>> userRegistration(@RequestBody  @Valid UserRegistrationRequest users){
         UserResponse user = userService.userRegistration(users);
          return responseBuilder.success(HttpStatus.CREATED, " registered successfully to Booking platform", user);
 
