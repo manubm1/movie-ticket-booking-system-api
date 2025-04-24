@@ -1,6 +1,7 @@
-package com.example.mtb.responsebuilder;
+package com.example.mtb.handler;
 
 import com.example.mtb.exception.UserRegistrationException;
+import com.example.mtb.responsebuilder.ErrorStructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
