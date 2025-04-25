@@ -9,6 +9,8 @@ public record UserResponse( String userId,
                            String email,
                            String phoneNumber,
                            UserRole userRole,
-                           LocalDate dateOfBirth) {
+                           LocalDate dateOfBirth,
+                            Long createAt,
+                            Long updateAt) {
 
 }

@@ -9,5 +9,6 @@ public record UserRegistrationRequest(String username,
                                       String phoneNumber,
                                       String password,
                                       UserRole userRole,
-                                      LocalDate dateOfBirth) {
+                                      LocalDate dateOfBirth
+                                     ) {
 }
