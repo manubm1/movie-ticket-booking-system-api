@@ -1,11 +1,12 @@
 package com.example.mtb.dto;
 
 public record TheaterResponse(String name,
-                              String adresss,
+                              String address,
                               String city,
-                              String landmark)
-                             // String createAt,
-                              //String updatedAt,
-                              //String createdBY)
+                              String landmark,
+                              Long createAt,
+                              Long updatedAt,
+                              String createdBy)
 {
+
 }

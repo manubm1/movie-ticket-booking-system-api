@@ -2,6 +2,7 @@ package com.example.mtb.controller;
 
 
 import com.example.mtb.dto.TheaterRegistrationRequest;
+import com.example.mtb.dto.TheaterRequest;
 import com.example.mtb.dto.TheaterResponse;
 import com.example.mtb.entity.Theater;
 import com.example.mtb.responsebuilder.ResponseBuilder;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -40,5 +38,11 @@ public class TheaterController {
          Theater theater =  theaterService.findById(theaterId);
 
          return  responseBuilder.success(HttpStatus.FOUND,"Theater Object fetched Successfully",theater);
+    }
+    @PatchMapping
+    public ResponseEntity<ResponseStructure<TheaterResponse>> updateTheater(@RequestParam String theaterId,@RequestBody TheaterRequest theater){
+        TheaterResponse theaters = theaterService.updateTheater(theaterId,theater);
+
+        return  responseBuilder.success(HttpStatus.OK,"theater updated Successfully",theaters);
     }
 }

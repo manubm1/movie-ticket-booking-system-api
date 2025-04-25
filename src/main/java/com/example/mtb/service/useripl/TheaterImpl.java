@@ -1,6 +1,7 @@
 package com.example.mtb.service.useripl;
 
 import com.example.mtb.dto.TheaterRegistrationRequest;
+import com.example.mtb.dto.TheaterRequest;
 import com.example.mtb.dto.TheaterResponse;
 import com.example.mtb.entity.Theater;
 import com.example.mtb.entity.TheaterOwner;
@@ -52,10 +53,10 @@ public class TheaterImpl implements TheaterService {
                 theaterrepository.save(theater);
 
                 theaterOwnerRepository.save(owner);
-            return new TheaterResponse(theater.getName(), theater.getAddress(), theater.getCity(), theater.getLandmark());
+            return new TheaterResponse(theater.getName(), theater.getAddress(), theater.getCity(), theater.getLandmark(),theater.getCreateAt(),theater.getUpdatedAt(),theater.getCreatedBy());
 
-        }else
-            throw new UserNotFoundException("user not a theater owner");
+            }else
+                throw new UserNotFoundException("user not a theater owner");
     }
 
     @Override
@@ -67,5 +68,24 @@ public class TheaterImpl implements TheaterService {
         }else
             throw new TheaterNotFoundException(" Theater not exist");
 
+    }
+
+    @Override
+    public TheaterResponse updateTheater(String theaterId, TheaterRequest request) {
+        Optional<Theater> optionalTheater = theaterrepository.findById(theaterId);
+
+        if(optionalTheater.isPresent()){
+            Theater existTheater = optionalTheater.get();
+
+            existTheater.setName(request.name());
+            existTheater.setAddress(request.address());
+            existTheater.setCity(request.city());
+            existTheater.setLandmark(request.landmark());
+
+            theaterrepository.save(existTheater);
+            return new TheaterResponse(existTheater.getName(),existTheater.getAddress(),existTheater.getCity(),existTheater.getLandmark(),existTheater.getCreateAt(),existTheater.getUpdatedAt(),existTheater.getCreatedBy());
+
+        }else
+            throw new TheaterNotFoundException(" Theater not exists");
     }
 }
