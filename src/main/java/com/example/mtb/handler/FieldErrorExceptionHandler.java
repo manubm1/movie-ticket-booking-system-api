@@ -36,11 +36,11 @@ public class FieldErrorExceptionHandler  extends ResponseEntityExceptionHandler{
             customFieldErrors.add(cfe);
         }
 
-//          ResponseEntity<FieldErrorStructure<List<CustomFieldsError>>> response =
-              return (ResponseEntity) restFieldErrorBuilder.failFieldError(HttpStatus.BAD_REQUEST, "Invalid Input", customFieldErrors);
+          ResponseEntity<FieldErrorStructure<List<CustomFieldsError>>> response =
+          (ResponseEntity) restFieldErrorBuilder.failFieldError(HttpStatus.BAD_REQUEST, "Invalid Input", customFieldErrors);
 
 
-//        return (ResponseEntity)response;
+        return (ResponseEntity)response;
 
 
 
