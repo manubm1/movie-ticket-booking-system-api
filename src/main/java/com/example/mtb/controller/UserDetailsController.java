@@ -29,9 +29,9 @@ public class UserDetailsController {
          return responseBuilder.success(HttpStatus.CREATED, " registered successfully to Booking platform", user);
 
     }
-   @PutMapping("/email")
-    ResponseEntity<ResponseStructure<UserDetails>> profileUpdate(String email, @RequestBody UserRequest request){
-       UserDetails details= userService.profileUpdate(email,request);
+   @PatchMapping ("/email")
+    ResponseEntity<ResponseStructure<UserResponse>> profileUpdate(@RequestParam String email, @RequestBody UserRequest request){
+       UserResponse details = userService.profileUpdate(email,request);
 
        return responseBuilder.success(HttpStatus.ACCEPTED,"Profile updated Successfully",details);
     }

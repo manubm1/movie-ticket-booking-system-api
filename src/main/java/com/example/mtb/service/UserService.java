@@ -8,5 +8,6 @@ import com.example.mtb.entity.UserDetails;
 public interface UserService {
     UserResponse userRegistration(UserRegistrationRequest users);
 
-   UserDetails profileUpdate(String email, UserRequest request);
+
+    UserResponse profileUpdate(String email, UserRequest request);
 }
