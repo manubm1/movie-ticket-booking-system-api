@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RestFieldErrorBuilder {
-    public <T>ResponseEntity<FieldErrorStructure<T>> failfieldError(HttpStatus status, String message, T errors){
+    public <T>ResponseEntity<FieldErrorStructure<T>> failFieldError(HttpStatus status, String message, T errors){
         FieldErrorStructure<T> fieldErrorStructure= FieldErrorStructure
                 .<T>builder()
                 .statusCode(status.value())
