@@ -5,9 +5,8 @@ import com.example.mtb.dto.TheaterResponse;
 import com.example.mtb.entity.Theater;
 import com.example.mtb.entity.TheaterOwner;
 import com.example.mtb.entity.UserDetails;
-import com.example.mtb.enums.UserRole;
-import com.example.mtb.exception.UserNotFoundExcception;
-import com.example.mtb.exception.UserRegistrationException;
+import com.example.mtb.exception.TheaterNotFoundException;
+import com.example.mtb.exception.UserNotFoundException;
 import com.example.mtb.repository.TheaterOwnerRepository;
 import com.example.mtb.repository.TheaterRepository;
 import com.example.mtb.repository.UserDetailsRepository;
@@ -35,7 +34,7 @@ public class TheaterImpl implements TheaterService {
 
 
         if (user == null) {
-            throw new UserNotFoundExcception("User Not found");
+            throw new UserNotFoundException("User Not found");
         } else
             if (user.getUserRole() == THEATER_OWNER) {
             Theater theater = new Theater();
@@ -56,6 +55,17 @@ public class TheaterImpl implements TheaterService {
             return new TheaterResponse(theater.getName(), theater.getAddress(), theater.getCity(), theater.getLandmark());
 
         }else
-            throw new UserNotFoundExcception("user not a theater owner");
+            throw new UserNotFoundException("user not a theater owner");
+    }
+
+    @Override
+    public Theater findById(String theaterId) {
+        Optional<Theater> optionalTheater = theaterrepository.findById(theaterId);
+        if(optionalTheater.isPresent()){
+            Theater theater = optionalTheater.get();
+            return theater;
+        }else
+            throw new TheaterNotFoundException(" Theater not exist");
+
     }
 }
